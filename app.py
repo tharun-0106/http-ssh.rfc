@@ -1,34 +1,28 @@
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)  # Allows your React frontend (running on localhost:3000) to access Flask backend
 
-# Serve the login page
-@app.route('/')
-def home():
-    return render_template('index.html')
+# Dummy user for demo
+users = {
+    'admin': 'password123',
+    'user1': 'pass1'
+}
 
-# Receive command (this is for later, still fine)
-@app.route('/execute', methods=['POST'])
-def execute():
-    data = request.get_json()
-    command = data.get('command', '')
-    return jsonify({
-        "status": "received",
-        "command": command
-    })
-
-# ✅ New: Login route to handle JSON login request
-@app.route('/login', methods=['POST'])
+@app.route('/', methods=['POST'])
 def login():
     data = request.get_json()
     username = data.get('username')
     password = data.get('password')
 
-    # Dummy credentials for now
-    if username == "admin" and password == "admin123":
-        return jsonify({"message": "Login successful!"}), 200
+    if not username or not password:
+        return jsonify({'message': 'Missing username or password'}), 400
+
+    if username in users and users[username] == password:
+        return jsonify({'message': 'Login successful', 'token': 'fake-jwt-token'}), 200
     else:
-        return jsonify({"message": "Invalid credentials"}), 401
+        return jsonify({'message': 'Invalid credentials'}), 401
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,port=5177)
