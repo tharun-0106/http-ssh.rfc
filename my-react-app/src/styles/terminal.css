@@ -1,0 +1,172 @@
+/* App.css or your main CSS file */
+
+/* Ensure the overall page background is set */
+body {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.execute-button {
+  background-color: #008CBA; /* Blue */
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border: none;
+  border-radius: 12px;
+  transition-duration: 0.4s;
+}
+
+.execute-button:hover {
+  background-color: #005f7a; /* Darker blue on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19);
+}
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+  color: #e0e0e0;
+  cursor: pointer;
+}
+
+.dropdown-options {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 4px;
+  list-style: none;
+  padding: 0;
+  margin-top: 8px;
+  z-index: 1000;
+}
+
+.dropdown-options li {
+  padding: 8px 16px;
+  color: #e0e0e0;
+  cursor: pointer;
+}
+
+.dropdown-options li:hover {
+  background-color: #3a3a3a;
+}
+
+.dropdown-container:hover .dropdown-options {
+  display: block;
+}
+
+
+
+/* Styles for the .top container */
+.top {
+    display: flex; /* THIS IS THE KEY: Makes children arrange in a row */
+    justify-content: space-around; /* Distributes space around items */
+    align-items: center; /* Vertically centers items */
+
+    background-color: #282c34;
+    padding: 15px 20px;
+    border-bottom: 1px solid #61dafb;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Styles for the h3 elements inside .top */
+.top h3 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.2em;
+    color: #61dafb;
+    margin: 0; /* Remove default margins */
+    padding: 0 15px; /* Add internal padding */
+    text-align: center;
+    transition: color 0.3s ease-in-out;
+    cursor: default;
+}
+
+/* Optional: Hover effect for headings */
+.top h3:hover {
+    color: #a2e8ff;
+}
+
+/* --- Responsive Design (Adjust as needed) --- */
+/* This media query will make them stack on screens 768px wide or less.
+   If you ALWAYS want them in a row, you can remove this @media block entirely. */
+@media (max-width: 768px) {
+    .top {
+        flex-direction: column; /* Stacks items vertically on smaller screens */
+        padding: 10px;
+    }
+
+    .top h3 {
+        margin-bottom: 10px;
+        font-size: 1.1em;
+    }
+
+    .top h3:last-child {
+        margin-bottom: 0;
+    }
+}
+/* Add this to your App.css or relevant component CSS file */
+
+.center {
+    display: flex; /* Use flexbox to easily arrange items */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items vertically if the parent allows */
+    padding: 30px; /* Add some space around the content */
+    background-color: #282c34; /* Same dark background as your top panel */
+    border-radius: 8px; /* Slightly rounded corners for a modern look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Deeper shadow for more prominence */
+    margin: 50px auto; /* Center the div on the page horizontally, add top margin */
+    max-width: 600px; /* Limit the maximum width of the panel */
+    text-align: center; /* Center text within the panel */
+}
+
+.center h3 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #61dafb; /* React blue for headings */
+    margin-bottom: 20px; /* Space below the heading */
+    font-size: 1.5em; /* Larger font for the main prompt */
+}
+
+#text-input {
+    width: 80%; /* Take up 80% of the container's width */
+    padding: 12px 15px; /* Comfortable padding inside the input field */
+    border: 2px solid #61dafb; /* React blue border */
+    border-radius: 5px; /* Rounded corners for the input */
+    background-color: #1a1a1a; /* Dark background for the input field */
+    color: #e0e0e0; /* Light text color for input */
+    font-size: 1.1em; /* Readable font size */
+    outline: none; /* Remove default focus outline */
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transition for focus */
+}
+
+#text-input:focus {
+    border-color: #a2e8ff; /* Lighter blue on focus */
+    box-shadow: 0 0 10px rgba(97, 218, 251, 0.5); /* Glowing effect on focus */
+}
+
+#output {
+    font-family: 'Consolas', 'Monaco', monospace; /* Monospaced font for command output */
+    color: #a2e8ff; /* Lighter blue for output text */
+    margin-top: 20px; /* Space above the output */
+    font-size: 1.1em;
+    min-height: 2em; /* Ensure some space even if no output is present */
+    white-space: pre-wrap; /* Preserve whitespace and wrap long lines */
+    word-break: break-word; /* Break long words if necessary */
+}
+
+/* You can also consider a placeholder style */
+#text-input::placeholder {
+    color: #b0b0b0; /* Lighter grey for placeholder text */
+    opacity: 0.7; /* Make it slightly transparent */
+}
